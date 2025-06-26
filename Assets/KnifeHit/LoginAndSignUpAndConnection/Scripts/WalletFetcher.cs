@@ -30,7 +30,7 @@ public class WalletFetcher : MonoBehaviour
                 {
                     // ✅ Ví đã tồn tại → lưu vào singleton
                     UserSession.Instance.SetUserData(response.username, response.walletaddress, response.mnemonics, UserSession.Instance.Score);
-                    SceneManager.LoadScene("HomeScene");
+                    SceneManager.LoadScene("WalletInform");
                     yield break;
                 }
             }

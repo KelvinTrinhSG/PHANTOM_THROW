@@ -31,7 +31,17 @@ public class UserSession : MonoBehaviour
         WalletAddress = walletAddress;
         Mnemonics = mnemonics;
         Score = score;
-    }
+        Debug.Log(Username);
+        Debug.Log(WalletAddress);
+        Debug.Log(Mnemonics);
+        Debug.Log(Score);
+        }
+
+    public void SetUserWalletInform(string walletAddress, string mnemonics)
+        {
+        WalletAddress = walletAddress;
+        Mnemonics = mnemonics;
+        }
 
     /// <summary>
     /// Reset toàn bộ dữ liệu người dùng

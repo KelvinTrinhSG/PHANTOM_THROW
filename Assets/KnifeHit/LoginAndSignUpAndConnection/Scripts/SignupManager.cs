@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SignupManager : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class SignupManager : MonoBehaviour
                 feedbackText.text = "Signup successful.";
                 Debug.Log("✅ Signup success: " + request.downloadHandler.text);
                 // TODO: có thể chuyển scene hoặc auto login
+                UserSession.Instance.SetUserData(username, "", "", 0); // Tạm thời chưa có wallet/mnemonics/score
+                SceneManager.LoadScene("WalletManager");
             }
             else
             {

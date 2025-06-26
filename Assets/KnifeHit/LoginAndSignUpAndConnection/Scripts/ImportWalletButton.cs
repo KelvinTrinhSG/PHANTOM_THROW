@@ -1,98 +1,97 @@
-﻿using System.Collections;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
+public class ImportWalletButton : MonoBehaviour
+    {
+    public TMP_InputField mnemonicsInput;
 
-public class CreateWalletButtonHandler : MonoBehaviour
-{
-    public TextMeshProUGUI feedbackText; // Gán Text(TMP) ở đây
-    private string apiUrl;
-    private string updateWalletUrl;
     public GameObject walletInformationPanel;
 
     public TextMeshProUGUI walletAddressValue;
     public TextMeshProUGUI publicKeyValue;
     public TextMeshProUGUI privateKeyValue;
     public TextMeshProUGUI mnemonicsValue;
+    public TextMeshProUGUI feedbackImportText;
+
+    private string updateWalletUrl;
+    private string url;
 
     private void Start()
-    {
-        // Load từ .env hoặc chỉnh tay tại đây
-        apiUrl = "http://localhost:3001/wallet/create";
+        {
         updateWalletUrl = "http://localhost:3000/update-wallet";
+        url = "http://localhost:3001/wallet/import"; // ✅ CHỈNH ĐÚNG URL IMPORT
         }
 
-    public void CreateWallet()
-    {
-        if (feedbackText != null)
-            feedbackText.text = "Creating wallet...";
+    [ContextMenu("TestImportWallet")]
+    public void OnClickImportWallet()
+        {
+        UpdateFeedbackImportText("");
+        string mnemonic = mnemonicsInput.text.Trim();
 
-        StartCoroutine(CallCreateWallet());
-    }
+        if (string.IsNullOrEmpty(mnemonic))
+            {
+            Debug.LogWarning("❌ Mnemonics is empty!");
+            UpdateFeedbackImportText("Mnemonics is empty!");
+            return;
+            }
+
+        StartCoroutine(CallImportWalletAPI(mnemonic));
+        }
+
+    private void UpdateFeedbackImportText(string inputValue)
+        {
+        feedbackImportText.text = inputValue;
+        }
 
     private void ShowWalletInfo(string address, string publicKey, string privateKey, string mnemonic)
-    {
-        // Set text
+        {
         walletAddressValue.text = address;
         publicKeyValue.text = publicKey;
         privateKeyValue.text = privateKey;
         mnemonicsValue.text = mnemonic;
 
-        // Hiện panel
         walletInformationPanel.SetActive(true);
-    }
+        }
 
+    IEnumerator CallImportWalletAPI(string mnemonic)
+        {
 
+        string jsonBody = JsonUtility.ToJson(new MnemonicRequest { mnemonic = mnemonic });
 
-    private IEnumerator CallCreateWallet()
-    {
-        UnityWebRequest request = UnityWebRequest.PostWwwForm(apiUrl, "");
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
-        {
-            string json = request.downloadHandler.text;
-            Debug.Log("✅ Wallet Created Raw: " + json);
+            {
+            Debug.Log("✅ Wallet imported successfully!");
+            Debug.Log("Wallet Info: " + request.downloadHandler.text);
 
-            // Parse JSON
+            string json = request.downloadHandler.text;
             WalletResponse wallet = JsonUtility.FromJson<WalletResponseWrapper>("{\"data\":" + json + "}").data;
 
-            ShowWalletInfo(
-    wallet.address,
-    wallet.publicKey,
-    wallet.privateKey,
-    wallet.mnemonic
-);
+            ShowWalletInfo(wallet.address, wallet.publicKey, wallet.privateKey, mnemonic);
 
-            // Debug log từng trường
-            Debug.Log("📬 Address: " + wallet.address);
-            Debug.Log("🪪 Public Key: " + wallet.publicKey);
-            Debug.Log("🔐 Private Key: " + wallet.privateKey);
-            Debug.Log("🧠 Mnemonic: " + wallet.mnemonic);
-
-            UserSession.Instance.SetUserWalletInform(wallet.address, wallet.mnemonic);
+            UserSession.Instance.SetUserWalletInform(wallet.address, mnemonic);
 
             Debug.Log(UserSession.Instance.Username);
             Debug.Log(UserSession.Instance.WalletAddress);
             Debug.Log(UserSession.Instance.Mnemonics);
 
             UpdateWalletToServer();
-
-
-            if (feedbackText != null)
-                feedbackText.text = "Wallet created:\n" + wallet.address;
-        }
+            }
         else
-        {
-            Debug.LogError("❌ Wallet creation failed: " + request.error);
-            if (feedbackText != null)
-                feedbackText.text = "Wallet creation failed!";
+            {
+            Debug.LogError("❌ Failed to import wallet: " + request.error);
+            UpdateFeedbackImportText("Input the correct Mnemonics");
+            }
         }
-    }
 
     [ContextMenu("Test Update Wallet")]
     public void UpdateWalletToServer()
@@ -141,22 +140,26 @@ public class CreateWalletButtonHandler : MonoBehaviour
             }
         }
 
+    [System.Serializable]
+    class MnemonicRequest
+        {
+        public string mnemonic;
+        }
 
     [System.Serializable]
     public class WalletResponse
-    {
+        {
         public string address;
         public string publicKey;
         public string privateKey;
         public string mnemonic;
-    }
+        }
 
-    // Trick để JsonUtility hiểu JSON gốc không có root, nên bọc tạm lại
     [System.Serializable]
     public class WalletResponseWrapper
-    {
+        {
         public WalletResponse data;
-    }
+        }
 
     [System.Serializable]
     public class WalletUpdateRequest
@@ -166,3 +169,4 @@ public class CreateWalletButtonHandler : MonoBehaviour
         public string mnemonics;
         }
     }
+

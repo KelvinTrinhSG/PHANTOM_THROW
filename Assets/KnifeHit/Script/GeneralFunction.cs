@@ -45,7 +45,7 @@ public class GeneralFunction : MonoBehaviour {
 	}
 	public void LoadSceneWithLoadingScreen(string sceneName)
 	{
-        CUtils.LoadScene(1, true);
+        CUtils.LoadScene(4, true);
 	}
 	
 	public string LoadedSceneName

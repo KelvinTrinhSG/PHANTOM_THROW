@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/KnifeHit/LoginAndSignUpAndConnection/Scenes/WalletManager.unity
     guid: 6c81dc24bf64e4b4ca297222f8f6cd7d
   - enabled: 1
+    path: Assets/KnifeHit/LoginAndSignUpAndConnection/Scenes/WalletInform.unity
+    guid: fae209f6c3fa418438429051bd3b3444
+  - enabled: 1
     path: Assets/KnifeHit/Scene/HomeScene.unity
     guid: ada4e4a0738c05c46b5da75f62ba8118
   - enabled: 1
