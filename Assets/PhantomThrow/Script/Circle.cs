@@ -64,7 +64,8 @@ public class Circle : MonoBehaviour {
 			tempKnife.GetComponents<BoxCollider2D> () [0].enabled = true;
 			tempKnife.GetComponents<BoxCollider2D> () [1].enabled = true;
 			setPosInCircle (transform, tempKnife.transform,item, 0.12f, 90f);
-			tempKnife.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
+			float scale = 0.65f * 0.5f; // giảm 1 nửa
+			tempKnife.transform.localScale = new Vector3 (scale, scale, scale);
 		}
 	}
 	void setPosInCircle(Transform circle,Transform obj,float angle,float spaceBetweenCircleAndObject,float objAngelOffset)
