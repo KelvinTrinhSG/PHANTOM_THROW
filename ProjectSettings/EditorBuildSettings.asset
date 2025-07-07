@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PhantomThrow/Scene/GameScene.unity
     guid: fa0cd6ab5cb82b64b9a6c48c3913471d
+  - enabled: 1
+    path: Assets/PhantomThrow/Leaderboards/Leaderboard Scene.unity
+    guid: b582a211d75df3e44b2d9149d0e1c1d7
   m_configObjects: {}
