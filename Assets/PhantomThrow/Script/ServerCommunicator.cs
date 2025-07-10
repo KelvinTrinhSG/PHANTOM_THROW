@@ -82,13 +82,25 @@ public class ServerCommunicator : MonoBehaviour
             {
             Debug.Log("✅ apple_unwritten reset response: " + request.downloadHandler.text);
             PlayerSession.Instance.UpdateAllUI();
-            restartButton.interactable = true;
-            backButton.interactable = true;
+
+            // Bắt đầu coroutine chờ 4 giây
+            StartCoroutine(ActivateButtonsAfterDelay(4f));
+
+            //restartButton.interactable = true;
+            //backButton.interactable = true;
             }
         else
             {
             Debug.LogError("❌ Failed to reset apple_unwritten: " + request.error);
             }
+        }
+
+    IEnumerator ActivateButtonsAfterDelay(float delay)
+        {
+        yield return new WaitForSeconds(delay);
+
+        restartButton.interactable = true;
+        backButton.interactable = true;
         }
 
     /// <summary>

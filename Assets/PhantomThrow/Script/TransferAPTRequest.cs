@@ -101,7 +101,10 @@ public class TransferAPTRequest : MonoBehaviour
                 if (resultText1 != null)
                     //resultText1.text = resultMsg;
                     resultText1.text = "Completed";
-                GamePlayManager.instance.HandleRewardBasedVideoRewarded(null, null);
+                GamePlayManager.instance.OnShowAds();
+                noThanks.interactable = true;
+                backButton.interactable = true;
+                restartBtn.interactable = true;
                 }
             else
                 {
@@ -109,11 +112,12 @@ public class TransferAPTRequest : MonoBehaviour
                     //resultText2.text = resultMsg;
                     resultText2.text = "Completed";
                 GamePlayManager.instance.CommitToAptos();
+                noThanks.interactable = true;
                 }
             }
-        noThanks.interactable = true;
-        backButton.interactable = true;
-        restartBtn.interactable = true;
+        //noThanks.interactable = true;
+        //backButton.interactable = true;
+        //restartBtn.interactable = true;
         }
 
     [System.Serializable]

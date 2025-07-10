@@ -48,10 +48,15 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public void playVibrate()
-	{
-		if(GameManager.Vibration)
-			Handheld.Vibrate ();
+		{
+		if (GameManager.Vibration)
+			{
+#if UNITY_ANDROID || UNITY_IOS
+			Handheld.Vibrate();
+#else
+			Debug.Log("💡 Vibration skipped: Not supported on this platform.");
+#endif
+			}
+		}
 
 	}
-
-}
