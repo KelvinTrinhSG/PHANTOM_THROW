@@ -7,28 +7,28 @@ public class CUtils
     public static void OpenStore()
     {
 #if UNITY_EDITOR || UNITY_ANDROID
-        Application.OpenURL("https://play.google.com/store/apps/details?id=" + GameConfig.instance.androidPackageID);
+        Application.OpenURL("https://x.com/CoinInves2024");
 #elif UNITY_IPHONE
-		Application.OpenURL("https://itunes.apple.com/app/id" + GameConfig.instance.iosAppID);
+		Application.OpenURL("https://x.com/CoinInves2024");
 #elif UNITY_STANDALONE_OSX
-		Application.OpenURL("https://itunes.apple.com/app/id" + GameConfig.instance.macAppID);
+		Application.OpenURL("https://x.com/CoinInves2024");
 #elif UNITY_WSA
         if (JobWorker.instance.onLink2Store != null) JobWorker.instance.onLink2Store();
 #endif
-    }
+        }
 
     public static void OpenStore(string id)
     {
 #if UNITY_EDITOR || UNITY_ANDROID
-        Application.OpenURL("https://play.google.com/store/apps/details?id=" + id);
+        Application.OpenURL("https://x.com/CoinInves2024");
 #elif UNITY_IPHONE
-		Application.OpenURL("https://itunes.apple.com/app/id" + id);
+		Application.OpenURL("https://x.com/CoinInves2024");
 #elif UNITY_STANDALONE_OSX
-		Application.OpenURL("https://itunes.apple.com/app/id" + id);
+		Application.OpenURL("https://x.com/CoinInves2024");
 #elif UNITY_WSA
         if (JobWorker.instance.onLink2Store != null) JobWorker.instance.onLink2Store();
 #endif
-    }
+        }
 
     public static void LikeFacebookPage(string faceID)
     {
