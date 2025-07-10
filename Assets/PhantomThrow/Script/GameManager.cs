@@ -55,26 +55,40 @@ public class GameManager : MonoBehaviour {
 	{
 		get
 		{
-			return PlayerPrefs.GetInt ("Player's HighScore", 0);
-		}
+			//return PlayerPrefs.GetInt ("Player's HighScore", 0);
+			return PlayerSession.Instance != null ? PlayerSession.Instance.SwordCollected : 0;
+			}
 		set
 		{
-			PlayerPrefs.SetInt ("Player's HighScore", value);
-		}
+			//PlayerPrefs.SetInt ("Player's HighScore", value);
+			if (PlayerSession.Instance != null)
+				{
+				PlayerSession.Instance.SwordCollected = value;
+				}
+			}
 	}
 	public static int Apple
 	{
 		get
 		{
-			return PlayerPrefs.GetInt ("Player's Apple", 0);
-		}
+			//return PlayerPrefs.GetInt ("Player's Apple", 0);
+			return PlayerSession.Instance != null ? PlayerSession.Instance.AppleUnwritten : 0;
+			}
 		set
 		{
-			PlayerPrefs.SetInt ("Player's Apple", value);
-			if (GeneralFunction.intance != null)
-				GeneralFunction.intance.appleLbl.text = GameManager.Apple + "";
-			
-		}
+			//PlayerPrefs.SetInt ("Player's Apple", value);
+			//if (GeneralFunction.intance != null)
+			//	GeneralFunction.intance.appleLbl.text = GameManager.Apple + "";
+			if (PlayerSession.Instance != null)
+				{
+				PlayerSession.Instance.AppleUnwritten = value;
+
+				// Nếu bạn có UI muốn cập nhật, thêm code ở đây (ví dụ):
+				if (GeneralFunction.intance != null)
+					GeneralFunction.intance.appleLbl.text = value.ToString();
+				}
+
+			}
 	}
 	public static int SelectedKnifeIndex
 	{

@@ -9,6 +9,9 @@ public class GeneralFunction : MonoBehaviour {
 
 	public static GeneralFunction intance;
     public Text appleLbl;
+	public Text appleLblOnchain;
+	public Text swordOnchain;
+	public Text txOnchain;
 	float EscTime;
 
 	void Awake()
@@ -20,7 +23,7 @@ public class GeneralFunction : MonoBehaviour {
 			intance = this;
 			DontDestroyOnLoad (this.gameObject);
 
-			GeneralFunction.intance.appleLbl.text = GameManager.Apple + "";
+			//GeneralFunction.intance.appleLbl.text = GameManager.Apple + "";
 		}
 	}
 	void Update()

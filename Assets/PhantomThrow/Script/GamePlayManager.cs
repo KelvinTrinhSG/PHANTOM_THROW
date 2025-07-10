@@ -54,6 +54,11 @@ public class GamePlayManager : MonoBehaviour {
 	Circle currentCircle;
 	Knife currentKnife;
 	bool usedAdContinue;
+
+	public ServerCommunicator serverCommunicator;
+	public Button submitButton;
+	public Button restartButton;
+	public Button backButton;
 	public int totalSpawnKnife
 	{
 		get
@@ -333,8 +338,22 @@ public class GamePlayManager : MonoBehaviour {
 		adsShowView.SetActive (false);
 		showGameOverPopup ();
 	}
+
+	public void CommitToAptos() {
+		submitButton.interactable = false;
+		restartButton.interactable = false;
+		backButton.interactable = false;
+		serverCommunicator.UpdateAppleWritten(UserSession.Instance.Username, GameManager.Apple);
+		serverCommunicator.UpdateSwordCollected(UserSession.Instance.Username, GameManager.HighScore);
+		serverCommunicator.IncrementTxCount(UserSession.Instance.Username);
+		}
+
 	public void showGameOverPopup()
 	{
+		//Ghi lên Server ở đây
+		// Gọi lấy AppleUnwritten và lưu vào Singleton
+		serverCommunicator.UpdateAppleUnwritten(UserSession.Instance.Username, GameManager.Apple);
+
 		gameOverView.SetActive (true);
 		gameOverSocreLbl.text = GameManager.score+"";
 		gameOverStageLbl.text = "Stage "+GameManager.Stage;
@@ -357,7 +376,8 @@ public class GamePlayManager : MonoBehaviour {
 	{
 		SoundManager.instance.PlaybtnSfx ();
 		GeneralFunction.intance.LoadSceneByName ("GameScene");
-	}
+		submitButton.interactable = true;
+		}
 	public void BackToHome()
 	{
 		SoundManager.instance.PlaybtnSfx ();
