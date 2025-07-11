@@ -1,8 +1,10 @@
 ﻿public static class APIEndpoints
     {
     // Base URLs (có thể thay đổi tùy môi trường)
-    public static string BaseWalletURL = "http://localhost:3001";
-    public static string BaseGameURL = "http://localhost:3000";
+    //public static string BaseWalletURL = "http://localhost:3001";
+    public static string BaseWalletURL = "https://aptos-backend-h2dj.onrender.com";
+    //public static string BaseGameURL = "http://localhost:3000";
+    public static string BaseGameURL = "https://expressserverphantomthrow.onrender.com";
 
     // Các endpoint cụ thể
     public static string CreateWallet => $"{BaseWalletURL}/wallet/create";

@@ -82,11 +82,17 @@ public class TransferAPTRequest : MonoBehaviour
             if (indexValue == 1)
                 {
                 if (resultText1 != null)
-                    resultText1.text = "❌ Transfer failed: " + request.error;
+                    resultText1.text = "Not Enough APT";
+                noThanks.interactable = true;
+                backButton.interactable = true;
+                restartBtn.interactable = true;
                 }
             else {
                 if (resultText2 != null)
-                    resultText2.text = "❌ Transfer failed: " + request.error;
+                    resultText2.text = "Not Enough APT";
+                noThanks.interactable = true;
+                backButton.interactable = true;
+                restartBtn.interactable = true;
                 }
             }
         else
