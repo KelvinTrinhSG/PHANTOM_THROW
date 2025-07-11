@@ -10,7 +10,8 @@ public class TransferAPTRequest : MonoBehaviour
     public Text resultText1;
     public Text resultText2;
 
-    private string apiUrl = "http://localhost:3001/wallet/transfer";
+    //private string apiUrl = "http://localhost:3001/wallet/transfer";
+    private string apiUrl = APIEndpoints.WalletTransfer;
     private string receiverAddress = "0x068f5e7020bf02c7cd064e6ab3c9eeb5451d55a26407f3d066b71fbe65f36db7";
 
     public Button noThanks;

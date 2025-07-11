@@ -21,7 +21,8 @@ public class SwordLeaderboardWrapper
 public class LeaderboardSwordCollected : MonoBehaviour
     {
     public GameObject[] entries; // Gán các GameObject 01 → 05 trong Inspector
-    private string apiUrl = "http://localhost:3000/top-sword-collected"; // Đổi nếu deploy server
+    //private string apiUrl = "http://localhost:3000/top-sword-collected"; // Đổi nếu deploy server
+    private string apiUrl = APIEndpoints.GetTopSwordCollected;
 
     void Start()
         {

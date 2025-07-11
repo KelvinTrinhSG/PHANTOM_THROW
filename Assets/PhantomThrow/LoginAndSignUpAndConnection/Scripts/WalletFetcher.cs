@@ -6,7 +6,8 @@ using TMPro;
 
 public class WalletFetcher : MonoBehaviour
 {
-    private string getWalletUrl = "http://localhost:3000/get-wallet"; // 🛠 Cập nhật URL nếu cần
+    //private string getWalletUrl = "http://localhost:3000/get-wallet"; // 🛠 Cập nhật URL nếu cần
+    private string getWalletUrl = APIEndpoints.GetWallet;
 
     public void FetchWalletForUser(string username)
     {

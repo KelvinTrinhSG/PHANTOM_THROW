@@ -14,7 +14,8 @@ public class PlayerSession : MonoBehaviour
     public int SwordCollected { get; set; }
     public int TxCount { get; set; }
 
-    private string getAppleUnwrittenUrl = "http://localhost:3000/get-apple-unwritten";
+    //private string getAppleUnwrittenUrl = "http://localhost:3000/get-apple-unwritten";
+    private string getAppleUnwrittenUrl = APIEndpoints.GetAppleUnwritten;
 
     private void Awake()
         {
@@ -100,7 +101,8 @@ public class PlayerSession : MonoBehaviour
 
     private IEnumerator FetchAppleWritten(string username)
         {
-        string url = $"http://localhost:3000/get-apple-written?username={username}";
+        //string url = $"http://localhost:3000/get-apple-written?username={username}";
+        string url = $"{APIEndpoints.GetAppleWrittenBase}?username={username}";
 
         using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
@@ -127,7 +129,8 @@ public class PlayerSession : MonoBehaviour
 
     private IEnumerator FetchSwordCollected(string username)
         {
-        string url = $"http://localhost:3000/get-sword-collected?username={username}";
+        //string url = $"http://localhost:3000/get-sword-collected?username={username}";
+        string url = $"{APIEndpoints.GetSwordCollectedBase}?username={username}";
 
         using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
@@ -154,7 +157,9 @@ public class PlayerSession : MonoBehaviour
 
     private IEnumerator FetchTxCount(string username)
         {
-        string url = $"http://localhost:3000/get-tx-count?username={username}";
+        //string url = $"http://localhost:3000/get-tx-count?username={username}";
+        string url = $"{APIEndpoints.GetTransactionCountBase}?username={username}";
+
 
         using (UnityWebRequest request = UnityWebRequest.Get(url))
             {

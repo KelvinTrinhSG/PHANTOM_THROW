@@ -9,7 +9,9 @@ public class MnemonicVerifier : MonoBehaviour
     public TMP_InputField mnemonicsInput;
     public TMP_Text feedbackText;
 
-    private string backendUrl = "http://localhost:3000/get-user-by-mnemonic";
+    //private string backendUrl = "http://localhost:3000/get-user-by-mnemonic";
+    private string backendUrl = APIEndpoints.GetUserByMnemonic;
+
 
     [ContextMenu("Verify Mnemonic")]
     public void OnClickVerifyMnemonic()

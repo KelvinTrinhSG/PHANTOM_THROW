@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class ServerCommunicator : MonoBehaviour
     {
-    private string baseUrl = "http://localhost:3000"; // 🔁 Đổi nếu backend chạy ở nơi khác
-
+    //private string baseUrl = "http://localhost:3000"; // 🔁 Đổi nếu backend chạy ở nơi khác
+    private string baseUrl = APIEndpoints.BaseGameURL;
     public Button restartButton;
     public Button backButton;
 

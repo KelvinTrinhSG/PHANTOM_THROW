@@ -21,7 +21,8 @@ public class TxLeaderboardWrapper
 public class LeaderboardTxCount : MonoBehaviour
     {
     public GameObject[] entries; // Gán GameObject 01 → 05 trong Inspector
-    private string apiUrl = "http://localhost:3000/top-tx-count"; // Đổi nếu server đã deploy
+    //private string apiUrl = "http://localhost:3000/top-tx-count"; // Đổi nếu server đã deploy
+    private string apiUrl = APIEndpoints.GetTopTransactionCount;
 
     void Start()
         {

@@ -12,8 +12,8 @@ public class SignupManager : MonoBehaviour
     public Button signupButton;
     public TMP_Text feedbackText; // Gắn FeedbackText vào đây
 
-    private string signupUrl = "http://localhost:3000/insert"; // 🔁 Đổi nếu cần
-
+    //private string signupUrl = "http://localhost:3000/insert"; // 🔁 Đổi nếu cần
+    private string signupUrl = APIEndpoints.Signup;
     void Start()
     {
         signupButton.onClick.AddListener(OnSignupClicked);

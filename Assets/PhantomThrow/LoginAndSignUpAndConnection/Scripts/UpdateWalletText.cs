@@ -12,8 +12,8 @@ public class UpdateWalletText : MonoBehaviour
 
     public string walletAddress; // Gán ví APT muốn xem
     public TMP_Text balanceText; // Gán object "BalanceValue" trong Inspector
-    private string apiBaseUrl = "http://localhost:3001";
-
+    //private string apiBaseUrl = "http://localhost:3001";
+    private string apiBaseUrl = APIEndpoints.BaseWalletURL;
     // Start is called before the first frame update
     void Start()
     {

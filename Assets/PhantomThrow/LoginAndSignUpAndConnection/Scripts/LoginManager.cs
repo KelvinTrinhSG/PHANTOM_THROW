@@ -11,7 +11,8 @@ public class LoginManager : MonoBehaviour
     public Button loginButton;
     public TMP_Text feedbackText;
 
-    private string loginUrl = "http://localhost:3000/login";
+    //private string loginUrl = "http://localhost:3000/login";
+    private string loginUrl = APIEndpoints.Login;
 
     void Start()
     {

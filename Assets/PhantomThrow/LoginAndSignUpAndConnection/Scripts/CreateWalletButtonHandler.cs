@@ -20,8 +20,10 @@ public class CreateWalletButtonHandler : MonoBehaviour
     private void Start()
     {
         // Load từ .env hoặc chỉnh tay tại đây
-        apiUrl = "http://localhost:3001/wallet/create";
-        updateWalletUrl = "http://localhost:3000/update-wallet";
+        //apiUrl = "http://localhost:3001/wallet/create";
+        apiUrl = APIEndpoints.CreateWallet;
+        //updateWalletUrl = "http://localhost:3000/update-wallet";
+        updateWalletUrl = APIEndpoints.UpdateWallet;
         }
 
     public void CreateWallet()

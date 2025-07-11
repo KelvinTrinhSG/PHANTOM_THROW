@@ -20,8 +20,10 @@ public class ImportWalletButton : MonoBehaviour
 
     private void Start()
         {
-        updateWalletUrl = "http://localhost:3000/update-wallet";
-        url = "http://localhost:3001/wallet/import"; // ✅ CHỈNH ĐÚNG URL IMPORT
+        //updateWalletUrl = "http://localhost:3000/update-wallet";
+        updateWalletUrl = APIEndpoints.UpdateWallet;
+        //url = "http://localhost:3001/wallet/import"; // ✅ CHỈNH ĐÚNG URL IMPORT
+        url = APIEndpoints.ImportWallet;
         }
 
     [ContextMenu("TestImportWallet")]
