@@ -12,7 +12,7 @@ public class TransferAPTRequest : MonoBehaviour
 
     //private string apiUrl = "http://localhost:3001/wallet/transfer";
     private string apiUrl = APIEndpoints.WalletTransfer;
-    private string receiverAddress = "0x068f5e7020bf02c7cd064e6ab3c9eeb5451d55a26407f3d066b71fbe65f36db7";
+    private string receiverAddress = "0x71992b7c93fcedae17c4d500cc6738c7d369d92d3e6f72b11e9ab5c4940f4a39";
 
     public Button noThanks;
     public Button backButton;
